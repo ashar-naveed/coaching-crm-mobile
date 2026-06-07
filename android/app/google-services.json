@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "994080810817",
+    "project_id": "coaching-crm-3accc",
+    "storage_bucket": "coaching-crm-3accc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994080810817:android:84a8a6727a6370fd5ca3c0",
+        "android_client_info": {
+          "package_name": "com.yourname.coaching_crm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBqDFegUR0dv4EmT1pvuEZXZadI5GGJdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
