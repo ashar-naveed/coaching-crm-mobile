@@ -128,32 +128,38 @@ class _GoalsTab extends StatelessWidget {
                     ),
                   ),
                 ),
-                onLongPress: () => showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    title: const Text('Delete Goal'),
-                    content: const Text('Are you sure? This cannot be undone.'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text('Cancel'),
+                onLongPress: () {
+                  final ctx = context;
+                  showDialog(
+                    context: ctx,
+                    barrierDismissible: true,
+                    builder: (dialogContext) => AlertDialog(
+                      title: const Text('Delete Goal'),
+                      content: const Text(
+                        'Are you sure? This cannot be undone.',
                       ),
-                      TextButton(
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          await FirebaseFirestore.instance
-                              .collection('goals')
-                              .doc(goalId)
-                              .delete();
-                        },
-                        child: const Text(
-                          'Delete',
-                          style: TextStyle(color: Colors.red),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(dialogContext).pop(),
+                          child: const Text('Cancel'),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                        TextButton(
+                          onPressed: () async {
+                            Navigator.of(dialogContext).pop();
+                            await FirebaseFirestore.instance
+                                .collection('goals')
+                                .doc(goalId)
+                                .delete();
+                          },
+                          child: const Text(
+                            'Delete',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(

@@ -63,22 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Icon(
-                      Icons.psychology_outlined,
-                      size: 64,
-                      color: Color(0xFF1565C0),
-                    ),
+                    Image.asset('assets/images/logo.png', height: 80),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Coaching CRM',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1565C0),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
                     const Text(
                       'Sign in to your account',
                       textAlign: TextAlign.center,

@@ -16,7 +16,6 @@ class _AnnouncementFormScreenState extends State<AnnouncementFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleCtrl = TextEditingController();
   final _bodyCtrl = TextEditingController();
-  bool _targetAll = true;
   bool _loading = false;
 
   @override
@@ -25,7 +24,6 @@ class _AnnouncementFormScreenState extends State<AnnouncementFormScreen> {
     if (widget.existing != null) {
       _titleCtrl.text = widget.existing!['title'] ?? '';
       _bodyCtrl.text = widget.existing!['body'] ?? '';
-      _targetAll = widget.existing!['targetClientIds'] == 'all';
     }
   }
 
@@ -45,7 +43,7 @@ class _AnnouncementFormScreenState extends State<AnnouncementFormScreen> {
       'coachId': coachId,
       'title': _titleCtrl.text.trim(),
       'body': _bodyCtrl.text.trim(),
-      'targetClientIds': _targetAll ? 'all' : [],
+      'targetClientIds': 'all',
       'readBy': widget.existing?['readBy'] ?? [],
       'updatedAt': FieldValue.serverTimestamp(),
     };
@@ -109,14 +107,28 @@ class _AnnouncementFormScreenState extends State<AnnouncementFormScreen> {
               maxLines: 5,
               validator: (v) => (v == null || v.isEmpty) ? 'Required' : null,
             ),
-            const SizedBox(height: 24),
-            SwitchListTile(
-              title: const Text('Send to all clients'),
-              subtitle: const Text('Off = specific clients only'),
-              value: _targetAll,
-              activeColor: const Color(0xFF1565C0),
-              onChanged: (v) => setState(() => _targetAll = v),
-              contentPadding: EdgeInsets.zero,
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.blue.shade50,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.blue.shade100),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.people_outline,
+                    color: Colors.blue.shade700,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Sends to all clients',
+                    style: TextStyle(fontSize: 13, color: Colors.blue.shade700),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 32),
             if (_loading)
